@@ -53,44 +53,19 @@ public class MyApplication {
             current.show();
             return;
         }
-        Form hi = new Form("Welcome", new BorderLayout(BorderLayout.CENTER_BEHAVIOR_CENTER_ABSOLUTE));
+        Form hi = new Form("Welcome");
         
-        Overlay over = new Overlay();
-        Container layerpane = (Container) hi.getFormLayeredPane(Overlay.class, true);
-        layerpane.add(over);
-        
-        Button iAnimDialogButton = new Button("animated interactionDialog");
-        iAnimDialogButton.addActionListener((e) -> {
-        	InteractionDialog dlg = new InteractionDialog("Form Hello");
-			dlg.setLayout(new BorderLayout());
-			dlg.add(BorderLayout.CENTER, new Label("Hello Dialog from Form"));
-			Button close = new Button("Close");
-			close.addActionListener((ee) -> dlg.dispose());
-			dlg.addComponent(BorderLayout.SOUTH, close);
-			dlg.setFormMode(true);
-			dlg.setAnimateShow(true);
-			dlg.showPopupDialog(iAnimDialogButton);
-        });
-        
-        Button iUnanimDialogButton = new Button("unanimated interactionDialog");
-        iUnanimDialogButton.addActionListener((e) -> {
-        	InteractionDialog dlg = new InteractionDialog("Form Hello");
-			dlg.setLayout(new BorderLayout());
-			dlg.add(BorderLayout.CENTER, new Label("Hello Dialog from Form"));
-			Button close = new Button("Close");
-			close.addActionListener((ee) -> dlg.dispose());
-			dlg.addComponent(BorderLayout.SOUTH, close);
-			dlg.setFormMode(true);
-			dlg.setAnimateShow(false);
-			dlg.showPopupDialog(iAnimDialogButton);
-        });
-        
-        hi.addComponent(
-        	BorderLayout.CENTER, 
-        	BoxLayout.encloseY(iAnimDialogButton, iUnanimDialogButton)
-        );
-        
-        hi.show();
+        hi.setTitle("Test");
+        hi.setScrollable(false);
+		
+		Picker p = new Picker();
+		Button showPicker = new Button("show Picker");
+		showPicker.addActionListener((e) -> {
+			p.show();
+		});
+		
+		hi.addComponent(showPicker);
+	    hi.show();
    }
 
     public void stop() {
